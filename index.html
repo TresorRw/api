@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing node</title>
+</head>
+
+<body>
+    <form id="testForm">
+        <input type="text" id="deviceNumber" name="nbr" placeholder="Device number">
+        <button type="submit" id="send">Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $('#send').click((e) => {
+            e.preventDefault();
+            var settings = {
+                "url": `http://localhost:3500/save/${$('#deviceNumber').val()}`,
+                "method": "POST",
+                "timeout": 0,
+                "crossDomain":true,
+                headers: {
+                    "Access-Control-Allow-Origin":"http://localhost:3500"
+                }
+            };
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+        });
+    </script>
+</body>
+
+</html>

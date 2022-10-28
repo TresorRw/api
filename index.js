@@ -16,7 +16,9 @@ var db = mysql.createConnection({
 app.post('/save/:value', (req, res) => {
     let content = req.params.value;
     content = content.replaceAll('-', " ");
-    const id = uuid();
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(content);
+    /* const id = uuid();
     db.connect((err) => {
         if (err) throw err;
         let sql = `INSERT INTO test1 VALUES ('', '${id}', '${content}')`;
@@ -29,7 +31,7 @@ app.post('/save/:value', (req, res) => {
                 "Database Message": `${result.affectedRows} Record saved.`
             });
         });
-    });
+    }); */
 });
 
 app.get('/view/:cmt_id', (req, res) =>{
@@ -57,4 +59,5 @@ app.get('/all', (req, res) => {
         });
     });
 });
+
 app.listen(port, () => console.log("Server started..!"));
