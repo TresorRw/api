@@ -55,6 +55,6 @@ app.get('/all', (req, res) => {
             if(err) throw err;
             res.send(result);
         });
-    })
+    });
 });
 app.listen(port, () => console.log("Server started..!"));
